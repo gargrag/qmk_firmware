@@ -335,51 +335,13 @@ static void get_visualizer_layer_and_color(visualizer_state_t* state) {
         saturation = 255;
     } */
 
-    if (state->status.layer & 0x400) {
-        state->target_lcd_color = LCD_COLOR(OCEAN, saturation, 0xFF);
-        state->layer_text = "STENOGRAPHY";
-    }
-    else if (state->status.layer & 0x200) {
-        state->target_lcd_color = LCD_COLOR(GREEN, saturation, 0xFF);
-        state->layer_text = "FUNCTION";
-    }
-    else if (state->status.layer & 0x100) {
+    if (state->status.layer & 0x2) {
         state->target_lcd_color = LCD_COLOR(MAGENTA, saturation, 0xFF);
         state->layer_text = "Shortcuts Layer";
-        stop_keyframe_animation(&sweep_on_sweep_off_left_and_right);
-        start_keyframe_animation(&led_test_animation);
-    }
-    else    if (state->status.layer & 0x80) {
-        state->target_lcd_color = LCD_COLOR(VIOLET, saturation, 0xFF);
-        state->layer_text = "Plover";
-    }
-    else if (state->status.layer & 0x40) {
-        state->target_lcd_color = LCD_COLOR(RASPBERRY, saturation, 0xFF);
-        state->layer_text = "Mirrored Symbols";
-    }
-    else if (state->status.layer & 0x20) {
-        state->target_lcd_color = LCD_COLOR(RED, saturation, 0xFF);
-        state->layer_text = "Symbols";
-    }
-    else if (state->status.layer & 0x8) {
-        state->target_lcd_color = LCD_COLOR(OCEAN, saturation, 0xFF);
-        state->layer_text = "Mirrored Dvorak";
-    }
-    else if (state->status.layer & 0x4) {
-        state->target_lcd_color = LCD_COLOR(BLUE, saturation, 0xFF);
-        state->layer_text = "Dvorak";
-        stop_keyframe_animation(&led_test_animation);
-        start_keyframe_animation(&sweep_on_sweep_off_left_and_right);
-    }
-    else if (state->status.layer & 0x2) {
-        state->target_lcd_color = LCD_COLOR(MAGENTA, saturation, 0xFF);
-        state->layer_text = "Shortcuts Layer";
-        stop_keyframe_animation(&sweep_on_sweep_off_left_and_right);
-        start_keyframe_animation(&led_test_animation);
     }
     else {
         state->target_lcd_color = LCD_COLOR(YELLOW, saturation, 0xFF);
-        state->layer_text = "GARGRAG ¯\\_(ツ)_/¯";
+        state->layer_text = "   GARGRAG";
         stop_keyframe_animation(&led_test_animation);
         start_keyframe_animation(&Fade_in_all_leds);
     }
